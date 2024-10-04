@@ -20,6 +20,7 @@ public class Intro {
         System.out.println("sum2 :" + sum2);
     }
 
+//    static method can be accessed directly with method name in other static method
     public static int add(int a , int b){
         return a+b;
     }
