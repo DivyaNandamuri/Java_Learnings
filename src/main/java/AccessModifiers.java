@@ -1,14 +1,20 @@
 package main.java;
 
- public class AccessSpecifiers {
+ public class AccessModifiers {
 
-    private String name = "Div";
-    private int age = 11;
-    String gender = "Female";
-    static String firstName = "Sree";
+    private String name;
+    private int age;
+    String gender;
+    static String firstName;
 
-     public void setName(String n){
-         name=n;
+    //constructor
+    public AccessModifiers(){
+        gender = "Female";
+        firstName = "Sree";
+    }
+    //'this' represents current obj that is calling the setName
+     public void setName(String name){
+         this.name=name;
      }
 
      public void setAge(int n){
@@ -34,7 +40,7 @@ package main.java;
 
      public static void main(String args[]){
          //instance class call using object
-         AccessSpecifiers obj = new AccessSpecifiers();
+         AccessModifiers obj = new AccessModifiers();
          obj.setName("Satya");
          obj.setAge(20);
 
@@ -46,9 +52,9 @@ package main.java;
          System.out.println("gender :" + obj.gender);
 
          //static variable call using class name
-         System.out.println("fname :"+ AccessSpecifiers.firstName);
+         System.out.println("fname :"+ AccessModifiers.firstName);
 
          //static method call using class name
-        AccessSpecifiers.firstName1();
+         AccessModifiers.firstName1();
      }
  }
