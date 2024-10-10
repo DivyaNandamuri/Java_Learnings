@@ -28,28 +28,32 @@ public class DoublyLinkedList {
     public static void main(String args[]) {
         //initial node
         DoubleLLNode newNode = new DoubleLLNode(3);
-        System.out.println("New node:" + newNode);
+//        System.out.println("New node:" + newNode.data);
         DoublyLinkedList dll = new DoublyLinkedList();
 
         dll.add(5);
         dll.add(6);
-        DoubleLLNode tail = dll.forwardTraversing();
-        dll.reverseTraversing(tail);
+        dll.add(10);
+        dll.forwardTraversing();
+        System.out.println();
+        dll.reverseTraversing();
+        System.out.println();
+        dll.insertAtPosition(2,8);
+        dll.insertAtPosition(4,9);
+        dll.forwardTraversing();
     }
 
     // Traversing from head to the end of the list
-    public DoubleLLNode forwardTraversing() {
+    public void forwardTraversing() {
         DoubleLLNode temp = head;
         while(temp != null) {
             System.out.println("Forward traversing : "+ temp.data + " ");
-            tail=temp;
             temp=temp.next;
         }
-        return tail;
     }
 
     //Traversing from end to head of the list
-    public void reverseTraversing(DoubleLLNode tail) {
+    public void reverseTraversing() {
         DoubleLLNode temp = tail;
         while(temp !=null) {
             System.out.println("Reverse traversal : " + temp.data + " ");
@@ -64,16 +68,57 @@ public class DoublyLinkedList {
         //if no nodes
         if(temp==null){
             head = newNode;
+            tail = newNode;
             return;
         }
         //to add at beginning of the list
-        if(temp !=null) {
+        else {
             newNode.next=temp;
-            newNode.prev= null;
             temp.prev = newNode;
             head = newNode;
             return;
         }
+    }
+
+    //Inserting at specific position
+    public void insertAtPosition(int position, int data) {
+        DoubleLLNode newNode = new DoubleLLNode(data);
+        DoubleLLNode curr = head;
+        // to find length
+        int length = 0;
+        while(curr!=null){
+            curr = curr.next;
+            length++;
+        }
+
+        //if dll is empty - first node
+        if(length==0) {
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+
+        if(position < 0){
+            System.out.println("Enter a valid position");
+        }
+        else if(position>length){
+            System.out.println("Position is greater than length.. So adding node at end of list ");
+            DoubleLLNode last = tail;
+            newNode.prev = last;
+            last.next = newNode;
+            return;
+        }
+
+        //inserting at given position
+        DoubleLLNode current = head;
+        while(position!=1){
+            current=current.next;
+            position--;
+        }
+        newNode.prev= current.prev;
+        current.prev.next = newNode;
+        newNode.next = current;
+        current.prev= newNode;
     }
 
 }
