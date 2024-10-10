@@ -28,32 +28,52 @@ public class DoublyLinkedList {
     public static void main(String args[]) {
         //initial node
         DoubleLLNode newNode = new DoubleLLNode(3);
-
+        System.out.println("New node:" + newNode);
         DoublyLinkedList dll = new DoublyLinkedList();
 
-//        dll.add(newNode);
-        dll.forwardTraversing();
-        dll.reverseTraversing();
+        dll.add(5);
+        dll.add(6);
+        DoubleLLNode tail = dll.forwardTraversing();
+        dll.reverseTraversing(tail);
     }
 
     // Traversing from head to the end of the list
-    public void forwardTraversing() {
+    public DoubleLLNode forwardTraversing() {
         DoubleLLNode temp = head;
         while(temp != null) {
             System.out.println("Forward traversing : "+ temp.data + " ");
+            tail=temp;
             temp=temp.next;
         }
+        return tail;
     }
 
     //Traversing from end to head of the list
-    public void reverseTraversing() {
+    public void reverseTraversing(DoubleLLNode tail) {
         DoubleLLNode temp = tail;
         while(temp !=null) {
-            System.out.println("reverse traversal : " + temp.data + " ");
+            System.out.println("Reverse traversal : " + temp.data + " ");
             temp=temp.prev;
         }
     }
 
-
+    //Inserting at the begining
+    public void add(int second_node) {
+        DoubleLLNode newNode = new DoubleLLNode(second_node);
+        DoubleLLNode temp = head;
+        //if no nodes
+        if(temp==null){
+            head = newNode;
+            return;
+        }
+        //to add at beginning of the list
+        if(temp !=null) {
+            newNode.next=temp;
+            newNode.prev= null;
+            temp.prev = newNode;
+            head = newNode;
+            return;
+        }
+    }
 
 }
