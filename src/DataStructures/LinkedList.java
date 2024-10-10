@@ -48,7 +48,7 @@ public class LinkedList {
         }
         System.out.println(curr.data + " ");
     }
-    public Node remove(int value) {
+    public void remove(int value) {
         Node curr = head;
         // if the head is the value that is to be removed
         if(curr.data == value) {
@@ -58,9 +58,7 @@ public class LinkedList {
             else {
                 head = null;
             }
-            System.out.println("\n"+"After removal of a node:");
-            traverse();
-            return head;
+            return;
         }
         //to find the value in LL
         while(curr.next!=null) {
@@ -72,9 +70,7 @@ public class LinkedList {
                 curr = curr.next;
             }
         }
-        System.out.println("\nAfter removal of a node:");
-        traverse();
-        return head;
+        return;
     }
 
     public void insert(int position, int value) {
@@ -108,7 +104,6 @@ public class LinkedList {
 
         newnode.next = temp.next;
         temp.next = newnode;
-        System.out.println("\nAfter successful insertion:");
         return;
 
     }
@@ -119,17 +114,20 @@ public class LinkedList {
         Node first_node = new Node(5);
         System.out.println("First Node: " + first_node.data);
         LinkedList ll= new LinkedList(first_node);
+        //adding nodes
         ll.add(7);
         ll.add(4);
         ll.add(2);
         System.out.println("After adding new nodes: ");
-        //traverse
         ll.traverse();
        //insert
         ll.insert(2,8);
+        System.out.println("\nAfter successful insertion:");
         ll.traverse();
         //delete
         ll.remove(2);
+        System.out.println("\nAfter removal of a node:");
+        ll.traverse();
     }
 
 }
