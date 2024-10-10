@@ -28,18 +28,19 @@ public class DoublyLinkedList {
     public static void main(String args[]) {
         //initial node
         DoubleLLNode newNode = new DoubleLLNode(3);
-//        System.out.println("New node:" + newNode.data);
         DoublyLinkedList dll = new DoublyLinkedList();
 
-        dll.add(5);
-        dll.add(6);
-        dll.add(10);
+        dll.add(2);
         dll.forwardTraversing();
         System.out.println();
         dll.reverseTraversing();
         System.out.println();
-        dll.insertAtPosition(2,8);
-        dll.insertAtPosition(4,9);
+        dll.insertAtPosition(2,3);
+        dll.insertAtPosition(3,4);
+        dll.insertAtPosition(4,5);
+        dll.forwardTraversing();
+        System.out.println();
+        dll.removeInPosition(3);
         dll.forwardTraversing();
     }
 
@@ -91,10 +92,9 @@ public class DoublyLinkedList {
             length++;
         }
 
-        //if dll is empty - first node
-        if(length==0) {
-            head = newNode;
-            tail = newNode;
+        //insert at begining
+        if(length==0 || position==1) {
+            add(data);
             return;
         }
 
@@ -106,6 +106,7 @@ public class DoublyLinkedList {
             DoubleLLNode last = tail;
             newNode.prev = last;
             last.next = newNode;
+            tail=newNode;
             return;
         }
 
@@ -121,4 +122,18 @@ public class DoublyLinkedList {
         current.prev= newNode;
     }
 
+    public void removeInPosition(int position){
+        DoubleLLNode curr = head;
+        int length = 1;
+        //searching for the node and deleting it
+        while(curr != null) {
+            if(length==position){
+                curr.next.prev=curr.prev;
+                curr.prev.next=curr.next;
+                return;
+            }
+            curr=curr.next;
+            length++;
+        }
+    }
 }
